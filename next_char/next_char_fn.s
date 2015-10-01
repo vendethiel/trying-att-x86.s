@@ -17,7 +17,7 @@ main:
 print_next_char:
 	pushq %rbp
 	movq %rsp, %rbp
-	#subq $16, %rsp # <- not sure why that's useful..?
+	#subq $16, %rsp # only needed to align if you `call`
 
 	movl %edi, %eax # fill %eax, to use %al later
 	movb %al, -1(%rbp) # %al is a byte
