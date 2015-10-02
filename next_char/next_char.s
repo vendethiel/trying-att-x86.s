@@ -4,7 +4,7 @@
 _start:
 	pushq %rbp
 	movq %rsp, %rbp
-	subq $16, %rsp
+	#subq $16, %rsp # not needed, we only need one byte on the stack anyway
 	movb $90, -1(%rbp) # 110=n, 122=z, 90=Z
 	
 	# check we're not at 'Z'

@@ -14,11 +14,11 @@ main:
 	pushq %rbp
 	movq %rsp, %rbp
 
-	movl $letter_sample, %edi
+	movb $letter_sample, %dil
 	call print_prev_char
-	movl $letter_high_from, %edi
+	movb $letter_high_from, %dil
 	call print_prev_char
-	movl $letter_low_from, %edi
+	movb $letter_low_from, %dil
 	call print_prev_char
 
 	jmp exit
@@ -28,8 +28,9 @@ print_prev_char:
 	movq %rsp, %rbp
 	#subq $16, %rsp # only needed to align if you `call`
 
-	movl %edi, %eax # fill %eax, to use %al later
-	movb %al, -1(%rbp) # %al is a byte
+	# now using %dil, not needed anymore:
+	####  movl %edi, %eax # fill %eax, to use %al later
+	movb %dil, -1(%rbp)
 
 	# check we're not at 'Z'
 	cmpb $letter_high_from, -1(%rbp)
