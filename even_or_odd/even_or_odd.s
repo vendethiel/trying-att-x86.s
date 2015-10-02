@@ -1,6 +1,6 @@
 .global main
-.global print_odd_or_even
-.type print_odd_or_even, @function
+.global print_even_or_odd
+.type print_even_or_odd, @function
 
 .text
 
@@ -9,17 +9,17 @@ main:
 	movq %rsp, %rbp
 
 	movl $33, %edi
-	call print_odd_or_even
+	call print_even_or_odd
 	movl $0, %edi
-	call print_odd_or_even
+	call print_even_or_odd
 	movl $1, %edi
-	call print_odd_or_even
+	call print_even_or_odd
 
 	xor %rax, %rax # return 0
 	leave
 	ret
 
-print_odd_or_even:
+print_even_or_odd:
 	pushq %rbp
 	movq %rsp, %rbp
 
@@ -38,7 +38,7 @@ print_odd_or_even:
 	jmp do_print_message
 
 print_actually_even:
-	mov $message_odd_or_even, %rsi
+	mov $message_even_or_odd, %rsi
 	mov $message_even_size, %rdx
 
 do_print_message:
@@ -49,9 +49,9 @@ do_print_message:
 	leave
 	ret
 
-message_odd_or_even:
+message_even_or_odd:
 	.ascii "It's even\n"
-	.set message_even_size, .-message_odd_or_even
+	.set message_even_size, .-message_even_or_odd
 
 message_is_odd:
 	.ascii "It's odd\n"
