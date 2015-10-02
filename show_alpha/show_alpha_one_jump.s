@@ -12,18 +12,14 @@ main:
 
 	movb $letter_start, %dil
 loop:
-	cmpb $letter_end, %dil
-	jg done
-
-	# otherwise, proceed
 	pushq %rdi # using push/pop instead of stack BECAUSE I CAN
 	call print
 	popq %rdi
 
 	incb %dil
-	jmp loop
+	cmpb $letter_end, %dil
+	jle loop
 
-done:
 	xor %rax, %rax
 	leave
 	ret
