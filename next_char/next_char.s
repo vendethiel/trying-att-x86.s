@@ -36,4 +36,4 @@ rest:
 	syscall
 
 	leave
-	jret
+	ret

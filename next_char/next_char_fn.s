@@ -1,7 +1,7 @@
-	.global main
-	.type print_next_char, @function
+	.global _start
+	#linux only?.type print_next_char, @function
 
-main:
+_start:
 	pushq %rbp
 	movq %rsp, %rbp
 
@@ -12,7 +12,8 @@ main:
 	movl $122, %edi # 'z'
 	call print_next_char
 
-	jmp exit
+	leave
+	ret
 
 print_next_char:
 	pushq %rbp
@@ -45,13 +46,9 @@ rest:
 	leaq -1(%rbp), %rsi # arg2 -> Load Effective Address
 	mov $1, %rdx # arg3
 
-	mov $1, %rax # write syscall
+	#mov $1, %rax # linux write syscall
+	movq $0x2000004, %rax # write syscall
 	syscall
 
-	leave # kill stakframe
+	leave # kill stackframe
 	ret # jump back
-
-exit:
-	mov $60, %eax
-	xor %rdi, %rdi
-	syscall
