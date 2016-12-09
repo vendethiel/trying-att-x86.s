@@ -35,7 +35,7 @@ strlen:
 strcmp:
 	pushq %rbp
 	movq %rsp, %rbp
-  subq $16, %rbp # length 1 (8) + length 2 #+ %rdi + padding (8)
+  subq $16, %rbp # length 1 (8) + length 2
 
 # get both length
 	call strlen # first arg is already in %rdi
